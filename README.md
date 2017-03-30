@@ -16,14 +16,16 @@ At the end, you can delete all the images and volumes created with:
 ## Running the services
 First you need to create a `.env` containing the following tokens:
 
-    GITHUB_TOKEN=<personal token value>
-    SLACK_TOKEN=<personal token value>
+    GITHUB_TOKEN=<personal token value>
+    SLACK_TOKEN=<personal token value>
 
 Then you can run the stack with:
 
-    $ docker-compose up -d
-    
-You might to run the command twice as the demo app will load before the mysql container is ready.
+    $ docker-compose up -d
+
+You might have to run the command twice as the demo app will load before the mysql container is ready.
+
+The demo service will run at [http://locahost/](http://locahost/), the mysql service at localhost:3306 and jenkins at [http://localhost:8080](http://localhost:8080)
 
 ## Testing locally with ngrok
 
