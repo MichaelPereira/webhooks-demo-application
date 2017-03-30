@@ -4,7 +4,11 @@ This is a demo application of github Webhooks consumption setup as little
 Flask application with a few endpoints exposed and ready to process a few github webhooks.
 
 ## Requirements
-The only requirements is to have `docker`and `docker-compose` since this is how the stack runs. The rest of the application is being run as docker containers, so you don't need to install and configure anything to run it.
+The only requirements is to have [`docker`](https://docs.docker.com/engine/installation/)
+ and [`docker-compose`](https://docs.docker.com/compose/overview/)
+since this is how the stack runs. The rest of the application is being
+run as docker containers, so you don't need to install and configure
+anything to run it.
 At the end, you can delete all the images and volumes created with:
 
     $ docker system prune
@@ -25,14 +29,17 @@ You might to run the command twice as the demo app will load before the mysql co
 
 Since github needs to send the events to a publicly accessible URL and
 all the services are running locally on a laptop, we have to use something
-to make the connection between the two. In this case, the best tool is [ngrok](https://ngrok.com/).
+to make the connection between the two. In this case, the best tool is
+[ngrok](https://ngrok.com/).
 
 For the purpose of this application, as the demo service is running on port 80 and jenkins on port 8080, we need the `ngrok` command twice in two different terminals:
 
     $ ./ngrok http 80
     $ ./ngrok http 8080
 
-These two commands will show two ngrok URLs in the form of `http://bb1c23b4.ngrok.io`. This is what you should put as prefix to each webhook endpoint to allow github to send the events directly to the local application.
+These two commands will show two ngrok URLs in the form of `http://bb1c23b4.ngrok.io`.
+This is what you should put as prefix to each webhook endpoint to allow
+github to send the events directly to the local application.
 
 ## Example Endpoints
 
@@ -50,7 +57,9 @@ jenkins job to receive commit events to know when to build them.
 
 This endpoint should set as an organization webhook configured to receive [organization events](https://developer.github.com/v3/activity/events/types/#organizationevent).
 
-It will automatically add any person who accept the invitation to join the organizaation to the `users.txt` file in the `people` repository, along with the information of who invited them into the organization.
+It will automatically add any person who accept the invitation to join
+the organizaation to the `users.txt` file in the `people` repository,
+along with the information of who invited them into the organization.
 This is best used in conjuction with [gu-who](https://github.com/guardian/gu-who)
 to automate one of the github account requirements.
 
