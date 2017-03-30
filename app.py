@@ -36,7 +36,7 @@ def is_ping_event(request):
     return request.headers.get('X-GitHub-Event') == 'ping'
 
 @app.route('/repo_created', methods=['POST'])
-def github_hook():
+def repo_created():
     """
     Hook for creating a jenkins job automatically,
     along with the hook to send push event automatically
@@ -82,7 +82,7 @@ def send_slack_notification(org, repo_short_name, username):
     slack.chat.post_message(channel='#channel-name', text=msg)
 
 
-@app.route('/api/github_org_member_hook', methods=['POST'])
+@app.route('/github_org_member_hook', methods=['POST'])
 def github_org_member_hook():
     """
     Hook for organization events. When a user is added or removed from the org,
