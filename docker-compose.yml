@@ -3,32 +3,9 @@ services:
   demo:
     build:
       context: .
-    links:
-      - mysql
     volumes:
       - ./:/app
     environment:
-      - MYSQL_HOST=mysql
-      - MYSQL_USER=simpleuser
-      - MYSQL_PASSWORD=simpleuserpassword
-      - MYSQL_DATABASE=demo_db
       - PYTHONPATH=/app
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - SLACK_TOKEN=${SLACK_TOKEN}
     ports:
-      - "80:5000"
-  mysql:
-    image: mysql
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_DATABASE=demo_db
-      - MYSQL_USER=simpleuser
-      - MYSQL_PASSWORD=simpleuserpassword
-  jenkins:
-    image: jenkins
-    ports:
-      - "8080:8080"
-    volumes:
-      - .jenkins/:/var/jenkins_home
+      - "5000:5000"
